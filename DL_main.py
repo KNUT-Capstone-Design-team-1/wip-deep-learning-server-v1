@@ -1,11 +1,11 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
 @app.route("/data", methods=['GET', 'POST'])
 def Json_recive():
-  Pill_image = request.get_json() #json데이터 받는 코드
-  return "test"
+  pill_image = request.get_json() #json데이터 받는 코드
+  return jsonify(pill_image)
 
 
 

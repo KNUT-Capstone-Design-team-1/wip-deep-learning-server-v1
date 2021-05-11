@@ -2,10 +2,12 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-@app.route("/data", methods=['GET', 'POST'])
-def Json_recive():
-  pill_image = request.get_json() #json데이터 받는 코드
-  return jsonify(pill_image)
+@app.route("/data", methods=['POST'])
+def Json_receive():
+  params = json.loads(request.get_data())
+  for key in params.keys():
+    print(key)
+  return params.keys()
 
 
 

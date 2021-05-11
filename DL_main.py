@@ -4,10 +4,9 @@ app = Flask(__name__)
 
 @app.route("/data", methods=['POST'])
 def Json_receive():
-  params = request.get_json()
-  for key in params.keys():
-    print(key)
-  return params.keys()
+  params = request.get_json() #json데이터를 받는다.
+  print(params['key'])
+  return ' '
 
 
 

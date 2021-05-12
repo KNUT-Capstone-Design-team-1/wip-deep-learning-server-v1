@@ -1,16 +1,34 @@
 from flask import Flask, request, jsonify
-import json
+import json, base64
+from PIL import Image
+from io import BytesIO
 
 app = Flask(__name__)
 
 @app.route("/data", methods=['POST'])
 def Json_receive():
-  params = request.get_json() #json데이터를 받는다.
-  with open('pill_image.json', 'w') as make_file:
-    json.dump(params, make_file, ensure_ascii=False, inden="\t")
-  print("test")
-  return "test"
+  try:
+    params = request.get_json() # receive json data
+    with open('pill_image.json', 'w') as pill_file: # write json file
+      json.dump(params, pill_file)
+    if(SaveImage(params)):
+      print("image write")
+      return "Success"
+    else:
+      print("image write failed")
+      return "image write failed"
+  except:
+    return "Failed"
 
+def SaveImage(imjson):
+  try:
+    jsonData = json.loads(imjson)
+    pillImage = Image.open(BytesIO(base64.b64decode(jsonData['img_pill'])))
+    pillImage.save("pill_image/test.png", 'PNG')
+    return True
+  except:
+    return False
+  
 
 
 if __name__ == '__main__':

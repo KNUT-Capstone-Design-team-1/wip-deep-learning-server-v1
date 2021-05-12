@@ -7,19 +7,19 @@ app = Flask(__name__)
 
 @app.route("/data", methods=['POST'])
 def Json_receive():
-  params = request.get_json() # receive json data
-  with open('pill_image.json', 'w') as pill_file: # write json file
+  params = request.get_json()                                               # json 데이터 받기
+  with open('pill_image.json', 'w') as pill_file:                           # json 데이터 저장
     json.dump(params, pill_file)
-  if(SaveImage(params)):
+  if(SaveImage(params)):                                                    # 알약 이미지 저장 여부 확인
     print("image write")
     return "Success"
   else:
     print("image write failed")
     return "image write failed"
 
-def SaveImage(imjson):
+def SaveImage(imjson):                                                      # 이미지 저장 함수
   try:
-    pillImage = Image.open(BytesIO(base64.b64decode(imjson['img_pill'])))
+    pillImage = Image.open(BytesIO(base64.b64decode(imjson['img_base64']))) # base64데이터를 이미지로 변환
     pillImage.save("pill_image/test.png", 'PNG')
     return True
   except:

@@ -1,12 +1,15 @@
 from flask import Flask, request, jsonify
+import json
 
 app = Flask(__name__)
 
 @app.route("/data", methods=['POST'])
 def Json_receive():
   params = request.get_json() #json데이터를 받는다.
-  print(params['key'])
-  return ' '
+  with open('pill_image.json', 'w') as make_file:
+    json.dump(params, make_file, ensure_ascii=False, inden="\t")
+  print("test")
+  return "test"
 
 
 

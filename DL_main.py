@@ -6,20 +6,20 @@ from io import BytesIO
 app = Flask(__name__)
 
 @app.route("/data", methods=['POST'])
-def Json_receive():
-  params = request.get_json()                                               # json 데이터 받기
-  with open('pill_image.json', 'w') as pill_file:                           # json 데이터 저장
+def JsonReceive():
+  params = request.get_json()                                               # receive json data
+  with open('pill_image.json', 'w') as pill_file:                           # write json data
     json.dump(params, pill_file)
-  if(SaveImage(params)):                                                    # 알약 이미지 저장 여부 확인
+  if(WriteImage(params)):                                                   # check write image 
     print("image write")
     return "Success"
   else:
     print("image write failed")
     return "image write failed"
 
-def SaveImage(imjson):                                                      # 이미지 저장 함수
+def WriteImage(imjson):                                                     # image write
   try:
-    pillImage = Image.open(BytesIO(base64.b64decode(imjson['img_base64']))) # base64데이터를 이미지로 변환
+    pillImage = Image.open(BytesIO(base64.b64decode(imjson['img_base64']))) # base64 data to image
     pillImage.save("pill_image/test.png", 'PNG')
     return True
   except:

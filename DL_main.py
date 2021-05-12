@@ -7,22 +7,18 @@ app = Flask(__name__)
 
 @app.route("/data", methods=['POST'])
 def Json_receive():
-  try:
-    params = request.get_json() # receive json data
-    with open('pill_image.json', 'w') as pill_file: # write json file
-      json.dump(params, pill_file)
-    if(SaveImage(params)):
-      print("image write")
-      return "Success"
-    else:
-      print("image write failed")
-      return "image write failed"
-  except:
-    return "Failed"
+  params = request.get_json() # receive json data
+  with open('pill_image.json', 'w') as pill_file: # write json file
+    json.dump(params, pill_file)
+  if(SaveImage(params)):
+    print("image write")
+    return "Success"
+  else:
+    print("image write failed")
+    return "image write failed"
 
 def SaveImage(imjson):
   try:
-    jsonData = json.loads(imjson)
     pillImage = Image.open(BytesIO(base64.b64decode(jsonData['img_pill'])))
     pillImage.save("pill_image/test.png", 'PNG')
     return True

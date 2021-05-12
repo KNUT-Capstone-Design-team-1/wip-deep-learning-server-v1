@@ -19,7 +19,7 @@ def Json_receive():
 
 def SaveImage(imjson):
   try:
-    pillImage = Image.open(BytesIO(base64.b64decode(jsonData['img_pill'])))
+    pillImage = Image.open(BytesIO(base64.b64decode(imjson['img_pill'])))
     pillImage.save("pill_image/test.png", 'PNG')
     return True
   except:

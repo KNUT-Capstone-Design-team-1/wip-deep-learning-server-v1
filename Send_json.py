@@ -6,7 +6,7 @@ def SendJson():
   try:
     with open('pill_image.json', 'r') as pill_json:
       jsonData = json.load(pill_json)
-    res = requests.post('주소', data=jsonData)
+    res = requests.post('http://52.79.235.20:5000/test', data=jsonData)
     return True
   except:
     return False

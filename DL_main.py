@@ -6,7 +6,7 @@ from io import BytesIO
 app = Flask(__name__)
 
 @app.route("/data", methods=['POST'])
-def JsonReceive():
+def GetJson():
   params = request.get_json()                                               # receive json data
   with open('pill_image.json', 'w') as pill_file:                           # write json data
     json.dump(params, pill_file)
@@ -25,7 +25,11 @@ def WriteImage(imjson):                                                     # im
   except:
     return False
   
-
+@app.route("/pilldata", methods=['GET'])
+def SendJson():
+  with open('pill_image.json', 'r') as pill_json:
+    jsonData = json.load(pill_json)
+    return jsonify(jsonData)
 
 if __name__ == '__main__':
   app.run(host="0.0.0.0", port="5000")

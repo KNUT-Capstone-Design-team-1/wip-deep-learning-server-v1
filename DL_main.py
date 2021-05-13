@@ -31,8 +31,8 @@ def WriteImage(imjson):                                                     # im
   except:
     return False
 
-@app.route("/test", methods=['POST'])
-def SendTest():
+@app.route("/test", methods=['POST'])                                       # Send json test route
+def SendTest():                                                             # this part is just test
   respon = request.get_json()
   print(respon['test_json'])
   return "check Test"

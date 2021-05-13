@@ -34,7 +34,7 @@ def WriteImage(imjson):                                                     # im
 @app.route("/test", methods=['POST'])
 def SendTest():
   respon = request.get_json()
-  print(respon)
+  print(respon['test_json'])
   return "check Test"
 
 if __name__ == '__main__':

@@ -11,12 +11,14 @@ def GetJson():
   params = request.get_json()                                               # receive json data
   with open('pill_image.json', 'w') as pill_file:                           # write json data
     json.dump(params, pill_file)
-  if(Send_json.SendJson()):
-    print("Json send")
-  else:
-    print("send failed")
   if(WriteImage(params)):                                                   # check write image 
     print("image write")
+    checkMJ = Send_json.MakeJson()
+    print(checkMJ)
+    if(Send_json.SendJson()):
+      print("Json send")
+    else:
+      print("send failed")
     return "Success"
   else:
     print("image write failed")

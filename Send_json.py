@@ -7,6 +7,7 @@ def SendJson():
         with open('pill_data.json', 'r') as pill_json:
             jsonData = json.load(pill_json)
             res = requests.post('http://3.37.82.154:8080/ml', json=jsonData)
+            print(res)
         return True
     except:
         return False

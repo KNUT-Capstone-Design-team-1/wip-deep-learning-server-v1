@@ -13,7 +13,7 @@ def GetJson():
     json.dump(params, pill_file)
   if(WriteImage(params)):                                                   # check write image 
     print("image write")
-    checkMJ = Send_json.MakeJson()
+    checkMJ = Send_json.MakeJson(None)
     print(checkMJ)
     if(Send_json.SendJson()):
       print("Json send")

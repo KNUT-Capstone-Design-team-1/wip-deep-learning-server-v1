@@ -5,6 +5,7 @@ from io import BytesIO
 import Send_json
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 
 @app.route("/data", methods=['POST'])
 def GetJson():

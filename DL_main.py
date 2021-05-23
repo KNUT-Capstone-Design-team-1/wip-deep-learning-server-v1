@@ -21,7 +21,7 @@ def GetJson():
     #   print("send failed")
     with open('pill_data.json', 'r') as pill_data:
       json_data = json.load(pill_data)
-    return jsonify(pill_data)
+    return jsonify(json_data)
   else:
     print("image write failed")
     return "image write failed"

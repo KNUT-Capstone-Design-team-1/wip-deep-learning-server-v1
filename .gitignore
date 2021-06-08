@@ -1,0 +1,6 @@
+testimg.py
+*.jpg
+*.png
+*.gif
+*.pt
+*.pyc

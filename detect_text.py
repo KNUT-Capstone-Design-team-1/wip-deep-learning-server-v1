@@ -50,7 +50,7 @@ parser.add_argument('--pill_folder', default='./pill_image/', type=str, help='fo
 canvas_size = 1280
 mag_ratio = 0.2
 
-def test_net(net, image, text_threshold, link_threshold, low_text):
+def detect_net(net, image, text_threshold, link_threshold, low_text):
     # resize
     img_resized, target_ratio, size_heatmap = imgproc.resize_aspect_ratio(image, canvas_size, interpolation=cv2.INTER_LINEAR, mag_ratio=mag_ratio)
     ratio_h = ratio_w = 1 / target_ratio
@@ -110,7 +110,7 @@ def detect_text_img():
 
         image = imgproc.loadImage(image_path)
 
-        bboxes, polys = test_net(net, image, args.text_threshold, args.link_threshold, args.low_text)
+        bboxes, polys = detect_net(net, image, args.text_threshold, args.link_threshold, args.low_text)
 
         crop_files = crop_img(image[:,:,::-1], polys)
 

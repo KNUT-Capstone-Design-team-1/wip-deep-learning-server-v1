@@ -11,7 +11,7 @@ from deep_text_recognition.utils import CTCLabelConverter, AttnLabelConverter
 from deep_text_recognition.dataset import RawDataset, AlignCollate
 from deep_text_recognition.model import Model
 
-def demo(opt, device, img_list):
+def recog_net(opt, device, img_list):
     """ model configuration """
     if 'CTC' in opt.Prediction:
         converter = CTCLabelConverter(opt.character)
@@ -23,23 +23,22 @@ def demo(opt, device, img_list):
     model = torch.nn.DataParallel(model).to(device)
 
     # load model
-    print('loading pretrained model from %s' % opt.saved_model)
     model.load_state_dict(torch.load(opt.saved_model, map_location=device))
 
     # prepare data. two demo images from https://github.com/bgshih/crnn#run-demo
-    AlignCollate_demo = AlignCollate(imgH=opt.imgH, imgW=opt.imgW, keep_ratio_with_pad=opt.PAD)
+    AlignCollate_img = AlignCollate(imgH=opt.imgH, imgW=opt.imgW, keep_ratio_with_pad=opt.PAD)
     # use RawDataset
     image_data = ImgDataset(root=img_list, opt=opt)
-    demo_loader = torch.utils.data.DataLoader(
+    image_loader = torch.utils.data.DataLoader(
         image_data, batch_size=opt.batch_size,
         shuffle=False,
         num_workers=int(opt.workers),
-        collate_fn=AlignCollate_demo, pin_memory=True)
+        collate_fn=AlignCollate_img, pin_memory=True)
 
     # predict
     model.eval()
     with torch.no_grad():
-        for image_tensors, image_path_list in demo_loader:
+        for image_tensors, image_path_list in image_loader:
             batch_size = image_tensors.size(0)
             image = image_tensors.to(device)
             # For max length prediction
@@ -98,7 +97,7 @@ def img_text_recog(img_list):
 
     opt.num_gpu = torch.cuda.device_count()
 
-    pill_text = demo(opt, device, img_list)
+    pill_text = recog_net(opt, device, img_list)
     pill_text.reverse()
     pill_text = "".join(pill_text)
     return pill_text

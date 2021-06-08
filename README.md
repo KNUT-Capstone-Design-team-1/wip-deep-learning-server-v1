@@ -9,10 +9,23 @@ pip3 install torch==1.7.1+cpu torchvision==0.8.2+cpu torchaudio==0.7.2 -f https:
 ```
 pip3 install flask opencv-python scipy scikit-image pillow
 ```
+- install EfficientNet-Pytorch
+```
+pip3 install efficientnet_pytorch
+```
 
 ## Flask default
 - port : 5000
 - Only http, connect POST / return pill-feature json file
+### Run flask in background
+```
+nohup python3 DL_main.py &
+```
+- if you want kill flask task in background
+```
+ps -ef
+```
+- check flask PID and kill
 
 ## Trained Model
 - Pill-shape : [Click](https://drive.google.com/file/d/1yLixadZ_3Ls4x_TR0-8MG6-iQSEn5ZSG/view?usp=sharing)

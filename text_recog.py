@@ -68,7 +68,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--image_folder', required=False, help='path to image_folder which contains text images')
 parser.add_argument('--workers', type=int, help='number of data loading workers', default=0)
 parser.add_argument('--batch_size', type=int, default=192, help='input batch size')
-parser.add_argument('--saved_model', default='./deep_text_recognition/pill_recog_model.pth', required=False, help="path to saved_model to evaluation")
+parser.add_argument('--saved_model', default='deep_text_recognition/pill_recog_model.pth', required=False, help="path to saved_model to evaluation")
 """ Data processing """
 parser.add_argument('--batch_max_length', type=int, default=25, help='maximum-label-length')
 parser.add_argument('--imgH', type=int, default=32, help='the height of the input image')

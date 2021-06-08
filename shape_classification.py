@@ -26,7 +26,7 @@ def detect_pill_shape():
     image_size = EfficientNet.get_image_size(model_name)
     model = EfficientNet.from_pretrained(model_name, num_classes=2)
 
-    model.load_state_dict(torch.load('./pill_shape_model/class2.pt'))
+    model.load_state_dict(torch.load('./pill_shape_model/class2.pt', map_location='cpu'))
     model.eval()
 
     pill_folder = './pill_image/'

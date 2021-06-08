@@ -62,7 +62,6 @@ def recog_net(opt, device, img_list):
                 # calculate confidence score (= multiply of pred_max_prob)
                 confidence_score = pred_max_prob.cumprod(dim=0)[-1]
                 pred_text.append(pred)
-                # print(f'{pred:25s}\t{confidence_score:0.4f}')
     return pred_text
 
 parser = argparse.ArgumentParser()

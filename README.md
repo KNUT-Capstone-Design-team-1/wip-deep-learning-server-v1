@@ -1,6 +1,7 @@
 # DL Server Flask
 
 - install python3, python3-pip
+- require version == 3.8.1
 - install pytorch
 ```
 pip3 install torch==1.7.1+cpu torchvision==0.8.2+cpu torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html

@@ -7,7 +7,7 @@ pip3 install torch==1.7.1+cpu torchvision==0.8.2+cpu torchaudio==0.7.2 -f https:
 ```
 - install requirements
 ```
-pip3 install flask opencv-python scipy scikit-image pillow nltk
+pip3 install flask opencv-python scipy scikit-image pillow
 ```
 
 ## Flask default
@@ -23,7 +23,7 @@ pip3 install flask opencv-python scipy scikit-image pillow nltk
 <br>**Download file on deep_text_recognition folder**
 
 ## Requirements
-- flask, pytorch, torchvision, opencv-python, scipy, scikit-image, pillow, nltk
+- flask, pytorch, torchvision, opencv-python, scipy, scikit-image, pillow
 
 ## Test Enviroment
 - CUDA == 10.1

@@ -62,7 +62,7 @@ def recog_net(opt, device, img_list):
                 # calculate confidence score (= multiply of pred_max_prob)
                 confidence_score = pred_max_prob.cumprod(dim=0)[-1]
                 pred_text.append(pred)
-    return pred_text
+        return pred_text
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--image_folder', required=False, help='path to image_folder which contains text images')

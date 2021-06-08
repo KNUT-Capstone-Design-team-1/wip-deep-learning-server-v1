@@ -29,11 +29,11 @@ ps -ef
 - check flask PID and kill
 
 ## Trained Model
-- Pill-shape : [Click](https://drive.google.com/file/d/1yLixadZ_3Ls4x_TR0-8MG6-iQSEn5ZSG/view?usp=sharing)
+- Pill-shape : [Click](https://drive.google.com/file/d/12U-grcJXRO6YtLwp3GWBbe-FSWT8B4su/view?usp=sharing)
 <br>**Download file on pill_shape_model folder**
 - Detect-text : [Click](https://drive.google.com/open?id=1Jk4eGD7crsqCCg9C9VjCLkMN3ze8kutZ)
 <br>**Download file on CRAFT_pytorch/weights folder**
-- Text-Recognition : [Click](https://drive.google.com/file/d/12U-grcJXRO6YtLwp3GWBbe-FSWT8B4su/view?usp=sharing)
+- Text-Recognition : [Click](https://drive.google.com/file/d/1yLixadZ_3Ls4x_TR0-8MG6-iQSEn5ZSG/view?usp=sharing)
 <br>**Download file on deep_text_recognition folder**
 
 ## Requirements

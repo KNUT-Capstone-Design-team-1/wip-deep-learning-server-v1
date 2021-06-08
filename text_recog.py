@@ -35,6 +35,7 @@ def recog_net(opt, device, img_list):
         num_workers=int(opt.workers),
         collate_fn=AlignCollate_img, pin_memory=True)
 
+    pred_text = []
     # predict
     model.eval()
     with torch.no_grad():
@@ -53,7 +54,7 @@ def recog_net(opt, device, img_list):
 
             preds_prob = F.softmax(preds, dim=2)
             preds_max_prob, _ = preds_prob.max(dim=2)
-            pred_text = []
+            
             for img_name, pred, pred_max_prob in zip(image_path_list, preds_str, preds_max_prob):
                 pred_EOS = pred.find('[s]')
                 pred = pred[:pred_EOS]  # prune after "end of sentence" token ([s])
@@ -62,7 +63,7 @@ def recog_net(opt, device, img_list):
                 # calculate confidence score (= multiply of pred_max_prob)
                 confidence_score = pred_max_prob.cumprod(dim=0)[-1]
                 pred_text.append(pred)
-        return pred_text
+    return pred_text
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--image_folder', required=False, help='path to image_folder which contains text images')

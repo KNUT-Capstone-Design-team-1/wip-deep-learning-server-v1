@@ -29,7 +29,7 @@ ps -ef
 ```
 
 ## Trained Model
-- Pill-shape : [Click](https://drive.google.com/file/d/1Px9usqXB6aV6RiNO4mmsjelNk9FH8go6/view?usp=sharing)
+- Pill-shape : [Click](https://drive.google.com/file/d/1pBHtpsecIVQptD3HoWt61gwBIgO2uHCR/view?usp=sharing)
 <br>**Download file on pill_shape_model folder**
 - Detect-text : [Click](https://drive.google.com/open?id=1Jk4eGD7crsqCCg9C9VjCLkMN3ze8kutZ)
 <br>**Download file on CRAFT_pytorch/weights folder**

@@ -19,17 +19,17 @@ pip3 install efficientnet_pytorch
 - port : 5000
 - Only http, connect POST / return pill-feature json file
 ### Run flask in background
+- if you want kill flask task in background
 ```
 nohup python3 DL_main.py &
 ```
-- if you want kill flask task in background
+- check flask PID and kill
 ```
 ps -ef
 ```
-- check flask PID and kill
 
 ## Trained Model
-- Pill-shape : [Click](https://drive.google.com/file/d/12U-grcJXRO6YtLwp3GWBbe-FSWT8B4su/view?usp=sharing)
+- Pill-shape : [Click](https://drive.google.com/file/d/1Px9usqXB6aV6RiNO4mmsjelNk9FH8go6/view?usp=sharing)
 <br>**Download file on pill_shape_model folder**
 - Detect-text : [Click](https://drive.google.com/open?id=1Jk4eGD7crsqCCg9C9VjCLkMN3ze8kutZ)
 <br>**Download file on CRAFT_pytorch/weights folder**

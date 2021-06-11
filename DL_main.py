@@ -2,44 +2,43 @@ from flask import Flask, request, jsonify
 import json, base64
 from PIL import Image
 from io import BytesIO
-import makejson
+import wp_utils
 import detect_text, text_recog, shape_classification
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 
+# get_json 함수 호출 주소 및 형식 지정
 @app.route("/data", methods=['POST'])
 def get_json():
-  # receive json data
-  params = request.get_json() # json 데이터 받기
+  # json 데이터 받기
+  params = request.get_json()
 
-  # check write image 
+  # 이미지 저장 확인
   if(WriteImage(params)):
-    crop_files = detect_text.detect_text_img()
-    pill_text = text_recog.img_text_recog(crop_files)
-    pill_shape = shape_classification.detect_pill_shape()
+    crop_files = detect_text.detect_text_img() # 이미지 안의 text 영역 crop
+    pill_text = text_recog.img_text_recog(crop_files) # crop한 text 분석
+    pill_shape = shape_classification.detect_pill_shape() # 알약의 모양 분석
     
-    if(makejson.make_json_file(pill_shape=pill_shape, pill_text=pill_text)):
-      print("make json")
+    # 알약의 특징 정보를 json 파일로 저장 
+    wp_utils.make_json_file(pill_shape=pill_shape, pill_text=pill_text)
     
     with open('pill_data.json', 'r') as pill_data:
       json_data = json.load(pill_data)
     
+    # 메인서버로 알약 검색을 위한 json 데이터 반환
     return jsonify(json_data)
   
   else:
     print("image write failed")
     return "image write failed"
 
-# image write
 def WriteImage(imjson):
   try:
-    # base64 data to image
+    # base64 데이터를 이미지로 변환(decoding)
     pillImage = Image.open(BytesIO(base64.b64decode(imjson['img_base64'])))
     pillImage.save("pill_image/pill_img.png", 'PNG')
-    
     return True
-  
   except:
     return False
 

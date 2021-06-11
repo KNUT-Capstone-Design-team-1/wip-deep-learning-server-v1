@@ -11,6 +11,7 @@ from CRAFT_pytorch import file_utils
 import numpy as np
 
 def transform_image(image_bytes):
+    # 이미지 전처리
     my_transforms = transforms.Compose([transforms.Resize(255),
                                         transforms.CenterCrop(224),
                                         transforms.ToTensor(),
@@ -22,23 +23,25 @@ def transform_image(image_bytes):
 
 def detect_pill_shape():
     model_name = 'efficientnet-b7'
-
-    image_size = EfficientNet.get_image_size(model_name)
+    # 신경망 초기화
     model = EfficientNet.from_pretrained(model_name, num_classes=2)
 
+    #학습된 모델 불러오기
     model.load_state_dict(torch.load('./pill_shape_model/fine_tuned.pt', map_location='cpu'))
     model.eval()
 
     pill_folder = './pill_image/'
-
     image_list, _, _ = file_utils.get_files(pill_folder)
     try:
         image_path = image_list[0]
         with open(image_path, 'rb') as f:
             image_bytes = f.read()
+            # 이미지 전처리
             inputs = transform_image(image_bytes=image_bytes)
 
+        # 알약 모양 예측
         outputs = model(inputs)
+        # 결과를 사용가능하게 변환
         _, predict = torch.max(outputs, 1)
         if int(predict.numpy()) == 0:
             pill_shape = "원형"

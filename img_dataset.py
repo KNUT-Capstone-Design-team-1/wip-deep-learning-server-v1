@@ -15,11 +15,12 @@ class ImgDataset(Dataset):
     def __getitem__(self, index):
 
         try:
+            # 이미지를 흑백으로 변환
             img = Image.fromarray(self.image_path_list[index]).convert('L')
 
         except IOError:
             print(f'Corrupted image for {index}')
-            # make dummy image and dummy label for corrupted image.
+            # 이미지가 없을 경우 더미 이미지 생성
             if self.opt.rgb:
                 img = Image.new('RGB', (self.opt.imgW, self.opt.imgH))
             else:

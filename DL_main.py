@@ -11,7 +11,7 @@ app.config['JSON_AS_ASCII'] = False
 @app.route("/data", methods=['POST'])
 def get_json():
   # receive json data
-  params = request.get_json()
+  params = request.get_json() # json 데이터 받기
 
   # check write image 
   if(WriteImage(params)):

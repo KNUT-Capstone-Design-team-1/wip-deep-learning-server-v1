@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-import json, base64
+import json, base64, os
 from PIL import Image
 from io import BytesIO
 import wp_utils
@@ -7,6 +7,8 @@ import detect_text, text_recog, shape_classification
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
+
+dirname = './pill_image/'
 
 # get_json 함수 호출 주소 및 형식 지정
 @app.route("/data", methods=['POST'])
@@ -34,12 +36,16 @@ def get_json():
     return "image write failed"
 
 def WriteImage(imjson):
+  if not os.path.isdir(dirname):
+    os.mkdir(dirname)
   try:
+    pill_file_name = dirname + 'pill_img.png'
     # base64 데이터를 이미지로 변환(decoding)
-    pillImage = Image.open(BytesIO(base64.b64decode(imjson['img_base64'])))
-    pillImage.save("pill_image/pill_img.png", 'PNG')
+    pill_Image = Image.open(BytesIO(base64.b64decode(imjson['img_base64'])))
+    pill_Image.save(pill_file_name, 'PNG')
     return True
   except:
+    print("No image")
     return False
 
 if __name__ == '__main__':

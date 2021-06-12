@@ -51,7 +51,7 @@ def recog_net(opt, device, img_list):
             preds_max_prob, _ = preds_prob.max(dim=2)
             
             # [s] 토큰으로 문자 단위 분할
-            for img_name, pred, pred_max_prob in zip(image_path_list, preds_str, preds_max_prob):
+            for pred, pred_max_prob in zip(preds_str, preds_max_prob):
                 pred_EOS = pred.find('[s]')
                 pred = pred[:pred_EOS]
                 pred_max_prob = pred_max_prob[:pred_EOS]
@@ -62,7 +62,7 @@ def recog_net(opt, device, img_list):
 parser = argparse.ArgumentParser()
 parser.add_argument('--workers', type=int, help='number of data loading workers', default=0)
 parser.add_argument('--batch_size', type=int, default=192, help='input batch size')
-parser.add_argument('--saved_model', default='deep_text_recognition/pill_recog_model.pth', required=False, help="path to saved_model to evaluation")
+parser.add_argument('--saved_model', default='weights/pill_recog_model.pth', required=False, help="path to saved_model to evaluation")
 """ Data processing """
 parser.add_argument('--batch_max_length', type=int, default=25, help='maximum-label-length')
 parser.add_argument('--imgH', type=int, default=32, help='the height of the input image')

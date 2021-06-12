@@ -11,8 +11,8 @@ def make_json_file(pill_shape, pill_text, pill_line=False):
         "drug_color" : "",
         "drug_line" : "없음"
     }
-    drugData['drug_shape'] = pill_shape
-    drugData["drug_name"] = pill_text
+    drugData['drug_shape'] = pill_shape # 알약 모양
+    drugData["drug_name"] = pill_text # 알약 문자
     # drugData["drug_line"] = pill_line
     try:
         # 알약 특징 정보를 가진 json 파일 생성

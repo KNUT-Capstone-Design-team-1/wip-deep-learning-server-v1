@@ -21,16 +21,19 @@ def transform_image(image_bytes):
     image = Image.open(io.BytesIO(image_bytes)).convert('RGB')
     return my_transforms(image).unsqueeze(0)
 
-def detect_pill_shape():
+def detect_pill_shape(img_folder=None):
     model_name = 'efficientnet-b7'
     # 신경망 초기화
     model = EfficientNet.from_pretrained(model_name, num_classes=2)
 
     #학습된 모델 불러오기
-    model.load_state_dict(torch.load('./pill_shape_model/fine_tuned.pt', map_location='cpu'))
+    model.load_state_dict(torch.load('./weights/pill_shape_fine_tuned.pt', map_location='cpu'))
     model.eval()
 
-    pill_folder = './pill_image/'
+    if img_folder:
+        pill_folder = img_folder
+    else:
+        pill_folder = './pill_image/'
     image_list, _, _ = file_utils.get_files(pill_folder)
     try:
         image_path = image_list[0]

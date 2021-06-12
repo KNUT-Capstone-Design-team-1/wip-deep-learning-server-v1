@@ -24,7 +24,7 @@ def copyStateDict(state_dict):
     return new_state_dict
 
 parser = argparse.ArgumentParser(description='CRAFT Text Detection')
-parser.add_argument('--trained_model', default='CRAFT_pytorch/weights/craft_mlt_25k.pth', type=str, help='pretrained model')
+parser.add_argument('--trained_model', default='weights/craft_mlt_25k.pth', type=str, help='pretrained model')
 parser.add_argument('--text_threshold', default=0.4, type=float, help='text confidence threshold')
 parser.add_argument('--low_text', default=0.1, type=float, help='text low-bound score')
 parser.add_argument('--link_threshold', default=0.4, type=float, help='link confidence threshold')
@@ -93,7 +93,9 @@ def crop_img(img, boxes):
     return imgCrops
 
 
-def detect_text_img():
+def detect_text_img(pill_folder=None):
+    if pill_folder:
+        args.pill_folder=pill_folder
     torch.set_num_threads(2)
     # 신경망 초기화
     net = CRAFT()

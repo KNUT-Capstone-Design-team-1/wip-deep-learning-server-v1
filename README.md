@@ -1,5 +1,15 @@
 # DL Server Flask
 
+## Model
+### Text-detection
+- Use Clova-ai [CRAFT](https://github.com/clovaai/CRAFT-pytorch) pretrained model
+### Text-recognition
+- Use Clova-ai [deep-text-recognition-benchmark](https://github.com/clovaai/deep-text-recognition-benchmark)
+- Pretrained model(TRBA-case-sensitive)+fine-tuning with custom_data(croped pill text image)
+### Shape-classification
+- Use [EfficientNet-Pytorch](https://github.com/lukemelas/EfficientNet-PyTorch)
+
+## Dependency
 - install python3, python3-pip
 - require version == 3.8.1
 - install pytorch
@@ -14,7 +24,10 @@ pip3 install flask opencv-python scipy scikit-image lmdb natsort
 ```
 pip3 install efficientnet_pytorch
 ```
-
+- Test (test image in test_img dir)
+```
+python3 model_test.py
+```
 ## Flask default
 - port : 5000
 - Only http, connect POST / return pill-feature json file
@@ -30,14 +43,12 @@ ps -ef
 
 ## Trained Model
 - Pill-shape : [Click](https://drive.google.com/file/d/1pBHtpsecIVQptD3HoWt61gwBIgO2uHCR/view?usp=sharing)
-<br>**Download file on pill_shape_model folder**
-- Detect-text : [Click](https://drive.google.com/open?id=1Jk4eGD7crsqCCg9C9VjCLkMN3ze8kutZ)
-<br>**Download file on CRAFT_pytorch/weights folder**
+- Clova-ai CRAFT pretrained model : [Click](https://drive.google.com/open?id=1Jk4eGD7crsqCCg9C9VjCLkMN3ze8kutZ)
 - Text-Recognition : [Click](https://drive.google.com/file/d/1yLixadZ_3Ls4x_TR0-8MG6-iQSEn5ZSG/view?usp=sharing)
-<br>**Download file on deep_text_recognition folder**
+<br>**Download file on weights folder**
 
 ## Requirements
-- flask, pytorch, torchvision, opencv-python, scipy, scikit-image, pillow
+- flask, pytorch, torchvision, opencv-python, scipy, scikit-image, pillow, lmdb, natsort
 
 ## Test Enviroment
 - CUDA == 10.1

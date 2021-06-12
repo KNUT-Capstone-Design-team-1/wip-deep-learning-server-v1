@@ -24,7 +24,7 @@ pip3 install flask opencv-python scipy scikit-image lmdb natsort
 ```
 pip3 install efficientnet_pytorch
 ```
-- Test (test image in test_img dir)
+- Test (test image in test_img folder)&(Download trained model first)
 ```
 python3 model_test.py
 ```

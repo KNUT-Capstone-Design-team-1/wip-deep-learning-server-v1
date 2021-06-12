@@ -42,6 +42,7 @@ ps -ef
 ```
 
 ## Trained Model
+make dir weights for trained model
 - Pill-shape : [Click](https://drive.google.com/file/d/1pBHtpsecIVQptD3HoWt61gwBIgO2uHCR/view?usp=sharing)
 - Clova-ai CRAFT pretrained model : [Click](https://drive.google.com/open?id=1Jk4eGD7crsqCCg9C9VjCLkMN3ze8kutZ)
 - Text-Recognition : [Click](https://drive.google.com/file/d/1yLixadZ_3Ls4x_TR0-8MG6-iQSEn5ZSG/view?usp=sharing)

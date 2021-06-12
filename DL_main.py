@@ -8,8 +8,6 @@ import detect_text, text_recog, shape_classification
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 
-dirname = './pill_image/'
-
 # get_json 함수 호출 주소 및 형식 지정
 @app.route("/data", methods=['POST'])
 def get_json():
@@ -36,6 +34,7 @@ def get_json():
     return "image write failed"
 
 def WriteImage(imjson):
+  dirname = './pill_image/'
   if not os.path.isdir(dirname):
     os.mkdir(dirname)
   try:

@@ -1,10 +1,10 @@
 import io
 import matplotlib.pyplot as plt
-
+from pill_shape_model.cli_models import Shape_ResNet18
 import torchvision.transforms as transforms
+import torchvision
 from PIL import Image
 
-from efficientnet_pytorch import EfficientNet
 import torch
 
 
@@ -21,10 +21,7 @@ def transform_image(image_bytes):
     return my_transforms(image).unsqueeze(0)
 
 
-model_name = 'efficientnet-b7'
-
-image_size = EfficientNet.get_image_size(model_name)
-model = EfficientNet.from_pretrained(model_name, num_classes=2)
+model = Shape_ResNet18(2)
 
 model.load_state_dict(torch.load('class2.pt'))
 model.eval()
